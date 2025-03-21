@@ -46,7 +46,7 @@ export default function EntriesScreen() {
   }
 
   return (
-    <SafeAreaView className="flex-1 bg-gray-50">
+    <SafeAreaView className="flex-1 bg-gray-50 pb-24">
       <View className="flex-1">
         <View className="px-4 py-4 flex-row items-center justify-between bg-white border-b border-gray-200">
           <Text className="text-2xl font-bold text-gray-800">My Entries</Text>
@@ -94,7 +94,7 @@ export default function EntriesScreen() {
                                 <Text className="text-xs text-gray-400 ml-1">
                                   {entry.createdAt
                                     ? new Date(
-                                        entry.createdAt,
+                                        entry.createdAt
                                       ).toLocaleDateString()
                                     : "Recently added"}
                                 </Text>
@@ -110,7 +110,7 @@ export default function EntriesScreen() {
                       ))}
                     </View>
                   </View>
-                ),
+                )
               )}
             </View>
           )}

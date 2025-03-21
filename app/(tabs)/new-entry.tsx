@@ -25,7 +25,7 @@ export default function NewEntryScreen() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(
-    null,
+    null
   );
   const [showCategorySelector, setShowCategorySelector] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -33,18 +33,16 @@ export default function NewEntryScreen() {
 
   const selectedCategory = useMemo(
     () => categoriesData?.categories?.find((c) => c.id === selectedCategoryId),
-    [categoriesData?.categories, selectedCategoryId],
+    [categoriesData?.categories, selectedCategoryId]
   );
 
   const handleSubmit = useCallback(async () => {
     if (!name.trim()) {
-      setError("Entry name is required");
-      return;
+      return setError("Entry name is required");
     }
 
     if (!selectedCategoryId) {
-      setError("Please select a category");
-      return;
+      return setError("Please select a category");
     }
 
     if (isCreating) {
@@ -63,6 +61,11 @@ export default function NewEntryScreen() {
 
       // Go back after a short delay to show success state
       setTimeout(() => {
+        setSuccess(false);
+        setError(null);
+        setName("");
+        setDescription("");
+        setSelectedCategoryId(null);
         router.back();
       }, 1500);
     } catch (err) {
@@ -72,7 +75,7 @@ export default function NewEntryScreen() {
   }, [createEntry, description, name, router, selectedCategoryId]);
 
   return (
-    <SafeAreaView className="flex-1 bg-gray-50">
+    <SafeAreaView className="flex-1 bg-gray-50 pb-14">
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         className="flex-1"
@@ -83,7 +86,7 @@ export default function NewEntryScreen() {
               <Pressable
                 className="mr-2 w-10 h-10 rounded-full bg-gray-50 items-center justify-center"
                 onPress={() => router.back()}
-                disabled={isCreating || success}
+                disabled={isCreating}
               >
                 <Ionicons name="chevron-back" size={24} color="#6B7280" />
               </Pressable>

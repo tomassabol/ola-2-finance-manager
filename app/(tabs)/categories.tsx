@@ -20,7 +20,7 @@ export default function CategoriesScreen() {
 
   if (!categories?.categories || categories.categories.length === 0) {
     return (
-      <SafeAreaView className="flex-1 bg-gray-50">
+      <SafeAreaView className="flex-1 bg-gray-50 pb-24">
         <ScrollView className="flex-1 px-4 py-6">
           <View className="flex items-center justify-center h-64">
             <Ionicons name="folder-outline" size={56} color="#9CA3AF" />

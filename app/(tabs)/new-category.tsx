@@ -42,7 +42,10 @@ export default function NewCategoryScreen() {
 
       // Go back after a short delay to show success state
       setTimeout(() => {
-        router.back();
+        setSuccess(false);
+        setError(null);
+        setName("");
+        router.navigate("/categories");
       }, 1500);
     } catch (err) {
       console.error("Failed to create category:", err);
@@ -51,7 +54,7 @@ export default function NewCategoryScreen() {
   }, [createCategory, name, router]);
 
   return (
-    <SafeAreaView className="flex-1 bg-gray-50">
+    <SafeAreaView className="flex-1 bg-gray-50 pb-14">
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         className="flex-1"
@@ -61,8 +64,8 @@ export default function NewCategoryScreen() {
             <View className="flex-row items-center">
               <Pressable
                 className="mr-2 w-10 h-10 rounded-full bg-gray-50 items-center justify-center"
-                onPress={() => router.back()}
-                disabled={isCreating || success}
+                onPress={() => router.navigate("/categories")}
+                disabled={isCreating}
               >
                 <Ionicons name="chevron-back" size={24} color="#6B7280" />
               </Pressable>
