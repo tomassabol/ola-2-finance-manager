@@ -13,7 +13,7 @@ export const env = createEnv({
    * This way you can ensure the app isn't built with invalid env vars.
    */
   server: {
-    // SERVERVAR: z.string(),
+    DATABASE_URL: z.string(),
   },
 
   /**
@@ -31,6 +31,7 @@ export const env = createEnv({
    */
   runtimeEnv: {
     EXPO_PUBLIC_API_KEY: process.env.EXPO_PUBLIC_API_KEY,
+    DATABASE_URL: process.env.DATABASE_URL,
   },
 
   skipValidation:
