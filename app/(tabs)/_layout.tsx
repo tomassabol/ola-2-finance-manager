@@ -8,15 +8,10 @@ import { Platform, useColorScheme } from "react-native";
 // import { Colors } from "~/constants/Colors";
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        // tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
         headerShown: false,
-        // tabBarButton: HapticTab,
-        // tabBarBackground: TabBarBackground,
         tabBarStyle: Platform.select({
           ios: {
             // Use a transparent background on iOS to show the blur effect
@@ -29,19 +24,69 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Home",
-          // tabBarIcon: ({ color }) => (
-          //   <IconSymbol size={28} name="house.fill" color={color} />
-          // ),
+          title: "Entries",
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="categories"
         options={{
-          title: "Explore",
-          // tabBarIcon: ({ color }) => (
-          //   <IconSymbol size={28} name="paperplane.fill" color={color} />
-          // ),
+          title: "Categories",
+        }}
+      />
+
+      {/* Screens to hide */}
+      <Tabs.Screen
+        name="category/[id]/index"
+        options={{
+          tabBarItemStyle: {
+            display: "none",
+          },
+          tabBarButton: () => null,
+        }}
+      />
+      <Tabs.Screen
+        name="entry/[id]/index"
+        options={{
+          tabBarItemStyle: {
+            display: "none",
+          },
+          tabBarButton: () => null,
+        }}
+      />
+      <Tabs.Screen
+        name="entry/[id]/update"
+        options={{
+          tabBarItemStyle: {
+            display: "none",
+          },
+          tabBarButton: () => null,
+        }}
+      />
+      <Tabs.Screen
+        name="category/[id]/update"
+        options={{
+          tabBarItemStyle: {
+            display: "none",
+          },
+          tabBarButton: () => null,
+        }}
+      />
+      <Tabs.Screen
+        name="new-entry"
+        options={{
+          tabBarItemStyle: {
+            display: "none",
+          },
+          tabBarButton: () => null,
+        }}
+      />
+      <Tabs.Screen
+        name="new-category"
+        options={{
+          tabBarItemStyle: {
+            display: "none",
+          },
+          tabBarButton: () => null,
         }}
       />
     </Tabs>

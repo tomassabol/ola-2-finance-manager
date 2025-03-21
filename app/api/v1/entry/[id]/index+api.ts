@@ -17,15 +17,16 @@ export const GET = withAuth(async (request: Request) => {
   if (typeof id !== "string") {
     return Response.json(
       { error: "Invalid path parameter ID" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
   const entry = await db.query.entry.findFirst({
     where: eq(entryTable.id, id),
+    with: { category: true },
   });
 
-  if (!entry) {
+  if (!entry || !entry.active) {
     return Response.json({ error: "Entry not found" }, { status: 404 });
   }
 
@@ -38,7 +39,7 @@ export const PUT = withAuth(async (request: Request) => {
   if (typeof id !== "string") {
     return Response.json(
       { error: "Invalid path parameter ID" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -53,7 +54,7 @@ export const PUT = withAuth(async (request: Request) => {
   if (Object.keys(data).length === 0) {
     return Response.json(
       { error: "No valid fields to update" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -72,7 +73,7 @@ export const DELETE = withAuth(async (request: Request) => {
   if (!id) {
     return Response.json(
       { error: "Invalid path parameter ID" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
